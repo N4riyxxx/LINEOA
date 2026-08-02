@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฐานทัพสำรวจระบบสุริยะ</title>
+    <!-- นำเข้าฟอนต์ภาษาไทยเพื่อความสวยงาม -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---------------- CSS: ตกแต่งธีมอวกาศ โทนน้ำเงิน-ม่วง ---------------- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #0b0b2a 0%, #1a1a4b 50%, #3a0ca3 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* ป้องกันการเลื่อนหน้าจอหากไม่จำเป็น */
+        }
+
+        /* เอฟเฟกต์ดาววิบวับเป็นพื้นหลัง (แบบง่ายๆ) */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            z-index: -1;
+            animation: moveStars 150s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0, 40px 60px, 130px 270px; }
+            to { background-position: -550px -550px, -310px -490px, -120px -280px; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05); /* พื้นหลังโปร่งแสง */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 40px rgba(114, 9, 183, 0.6);
+            text-align: center;
+        }
+
+        h1 {
+            color: #4cc9f0;
+            text-shadow: 0 0 15px #4cc9f0;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+
+        p.description {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* การจัดรูปแบบปุ่มลิงก์ */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            display: block;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 18px 24px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* ปุ่มก่อนเรียน */
+        .btn-pretest {
+            background: linear-gradient(90deg, #4361ee 0%, #3f37c9 100%);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            border: 2px solid #4895ef;
+        }
+
+        /* ปุ่มหลังเรียน */
+        .btn-posttest {
+            background: linear-gradient(90deg, #7209b7 0%, #b5179e 100%);
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.4);
+            border: 2px solid #f72585;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-pretest:hover {
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.8);
+        }
+
+        .btn-posttest:hover {
+            box-shadow: 0 8px 25px rgba(114, 9, 183, 0.8);
+        }
+
+        /* ไอคอนหน้าข้อความ */
+        .icon {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- เลเยอร์พื้นหลังดวงดาว -->
+    <div class="stars"></div>
+
+    <div class="container">
+        <h1>🚀 ระบบสุริยะของเรา</h1>
+        <p class="description">ยินดีต้อนรับน้องๆ แหล่งเรียนรู้รายวิชาวิทยาศาสตร์และเทคโนโลยี (วิทยาศาสตร์โลกและอวกาศ)!<br>โปรดเลือกภารกิจที่คุณต้องการดำเนินการด้านล่างนี้</p>
+        
+        <div class="btn-group">
+            <!-- ลิงก์ไปยังแบบทดสอบก่อนเรียน (เปิดแท็บใหม่) -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcXVNiKboxJCIsR5IQQOGzsfY5_t1efxJiq1FqnLPAj9nDUQ/viewform?usp=dialog" 
+               target="_blank" 
+               class="btn btn-pretest">
+                <span class="icon">📝</span> แบบทดสอบก่อนเรียน (Pre-test)
+            </a>
+
+            <!-- ลิงก์ไปยังแบบทดสอบหลังเรียน (เปิดแท็บใหม่) -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKBewpdjRx_cB8IDioMkJmN51iG7AL_yBEeJL7oLO4EPDz0A/viewform?usp=publish-editor" 
+               target="_blank" 
+               class="btn btn-posttest">
+                <span class="icon">🏆</span> แบบทดสอบหลังเรียน (Post-test)
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

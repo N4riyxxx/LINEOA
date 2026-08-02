@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฐานทัพสำรวจระบบสุริยะ</title>
-    <!-- นำเข้าฟอนต์ภาษาไทยเพื่อความสวยงาม -->
+    <title>ระบบสุริยะของเรา</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ---------------- CSS: ตกแต่งธีมอวกาศ โทนน้ำเงิน-ม่วง ---------------- */
+        /* ---------------- CSS: ตกแต่งธีมอวกาศ ---------------- */
         body {
             margin: 0;
             padding: 0;
@@ -18,10 +17,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* ป้องกันการเลื่อนหน้าจอหากไม่จำเป็น */
+            overflow: hidden;
         }
 
-        /* เอฟเฟกต์ดาววิบวับเป็นพื้นหลัง (แบบง่ายๆ) */
         .stars {
             position: absolute;
             top: 0;
@@ -44,7 +42,7 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.05); /* พื้นหลังโปร่งแสง */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -71,7 +69,6 @@
             line-height: 1.6;
         }
 
-        /* การจัดรูปแบบปุ่มลิงก์ */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -92,14 +89,12 @@
             z-index: 1;
         }
 
-        /* ปุ่มก่อนเรียน */
         .btn-pretest {
             background: linear-gradient(90deg, #4361ee 0%, #3f37c9 100%);
             box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
             border: 2px solid #4895ef;
         }
 
-        /* ปุ่มหลังเรียน */
         .btn-posttest {
             background: linear-gradient(90deg, #7209b7 0%, #b5179e 100%);
             box-shadow: 0 5px 15px rgba(114, 9, 183, 0.4);
@@ -110,47 +105,120 @@
             transform: translateY(-5px);
         }
 
-        .btn-pretest:hover {
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.8);
+        /* สไตล์สำหรับปุ่มที่ถูกคลิกไปแล้ว (สีจะเปลี่ยนนิดหน่อยให้ดูว่าทำแล้ว) */
+        .btn.completed {
+            background: linear-gradient(90deg, #2b9348 0%, #007f5f 100%);
+            box-shadow: 0 5px 15px rgba(43, 147, 72, 0.4);
+            border: 2px solid #52b788;
         }
 
-        .btn-posttest:hover {
-            box-shadow: 0 8px 25px rgba(114, 9, 183, 0.8);
-        }
-
-        /* ไอคอนหน้าข้อความ */
         .icon {
             margin-right: 10px;
             font-size: 1.4rem;
+        }
+
+        .status-text {
+            font-size: 1rem;
+            color: #a7c957;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+
+        .reset-btn {
+            margin-top: 30px;
+            background: none;
+            border: none;
+            color: #888;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+        }
+        .reset-btn:hover {
+            color: #fff;
         }
 
     </style>
 </head>
 <body>
 
-    <!-- เลเยอร์พื้นหลังดวงดาว -->
     <div class="stars"></div>
 
     <div class="container">
-        <h1>🚀 ระบบสุริยะของเรา</h1>
-        <p class="description">ยินดีต้อนรับน้องๆ แหล่งเรียนรู้รายวิชาวิทยาศาสตร์และเทคโนโลยี (วิทยาศาสตร์โลกและอวกาศ)!<br>โปรดเลือกภารกิจที่คุณต้องการดำเนินการด้านล่างนี้</p>
+        <h1>🚀 ฐานทัพระบบสุริยะ</h1>
+        <p class="description">ยินดีต้อนรับน้องๆ เข้าสู่แบบทดสอบก่อนเรียนและแบบทดสอบหลังเรียน!<br>โปรดเลือกแบบทดสอบที่คุณต้องการดำเนินการด้านล่างนี้</p>
         
         <div class="btn-group">
-            <!-- ลิงก์ไปยังแบบทดสอบก่อนเรียน (เปิดแท็บใหม่) -->
+            <!-- เพิ่ม id="btn-pretest" และ onclick event -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcXVNiKboxJCIsR5IQQOGzsfY5_t1efxJiq1FqnLPAj9nDUQ/viewform?usp=dialog" 
                target="_blank" 
-               class="btn btn-pretest">
-                <span class="icon">📝</span> แบบทดสอบก่อนเรียน (Pre-test)
+               class="btn btn-pretest" 
+               id="btn-pretest"
+               onclick="markAsCompleted('pretest')">
+                <span class="icon">📝</span> แบบทดสอบก่อนเรียน 
+                <span id="status-pretest" class="status-text"></span>
             </a>
 
-            <!-- ลิงก์ไปยังแบบทดสอบหลังเรียน (เปิดแท็บใหม่) -->
+            <!-- เพิ่ม id="btn-posttest" และ onclick event -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKBewpdjRx_cB8IDioMkJmN51iG7AL_yBEeJL7oLO4EPDz0A/viewform?usp=publish-editor" 
                target="_blank" 
-               class="btn btn-posttest">
-                <span class="icon">🏆</span> แบบทดสอบหลังเรียน (Post-test)
+               class="btn btn-posttest"
+               id="btn-posttest"
+               onclick="markAsCompleted('posttest')">
+                <span class="icon">🏆</span> แบบทดสอบหลังเรียน 
+                <span id="status-posttest" class="status-text"></span>
             </a>
         </div>
+
+        <!-- ปุ่มล้างข้อมูลความจำ (เผื่อให้นักเรียนคนอื่นมาทำเครื่องต่อ) -->
+        <button class="reset-btn" onclick="resetProgress()">ล้างประวัติการทำภารกิจ</button>
     </div>
+
+    <!-- ---------------- JavaScript: ระบบจดจำการคลิก ---------------- -->
+    <script>
+        // เมื่อโหลดหน้าเว็บ ให้เช็คว่าเคยคลิกปุ่มไปหรือยัง
+        window.onload = function() {
+            checkStatus();
+        };
+
+        // ฟังก์ชันจดจำเมื่อปุ่มถูกคลิก
+        function markAsCompleted(testType) {
+            // บันทึกข้อมูลลงในเบราว์เซอร์
+            localStorage.setItem(testType + '_completed', 'true');
+            
+            // อัปเดตหน้าจอทันที
+            updateUI(testType);
+        }
+
+        // ฟังก์ชันตรวจสอบสถานะจากเบราว์เซอร์
+        function checkStatus() {
+            if(localStorage.getItem('pretest_completed') === 'true') {
+                updateUI('pretest');
+            }
+            if(localStorage.getItem('posttest_completed') === 'true') {
+                updateUI('posttest');
+            }
+        }
+
+        // ฟังก์ชันเปลี่ยนสีปุ่มและแสดงคำว่า ✅ (เข้าทำแล้ว)
+        function updateUI(testType) {
+            const btn = document.getElementById('btn-' + testType);
+            const statusSpan = document.getElementById('status-' + testType);
+            
+            if(btn && statusSpan) {
+                btn.classList.add('completed'); // เปลี่ยนปุ่มเป็นสีเขียว
+                statusSpan.innerHTML = "✅ (เข้าทำแล้ว)";
+            }
+        }
+
+        // ฟังก์ชันล้างข้อมูล (เผื่อมีนักเรียนใช้คอมพิวเตอร์เครื่องเดียวกัน)
+        function resetProgress() {
+            if(confirm("คุณต้องการล้างประวัติการทำแบบทดสอบบนเครื่องนี้ใช่หรือไม่?")) {
+                localStorage.removeItem('pretest_completed');
+                localStorage.removeItem('posttest_completed');
+                location.reload(); // รีเฟรชหน้าเว็บ
+            }
+        }
+    </script>
 
 </body>
 </html>

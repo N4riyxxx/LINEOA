@@ -144,7 +144,7 @@
     <div class="stars"></div>
 
     <div class="container">
-        <h1>🚀 ฐานทัพระบบสุริยะ</h1>
+        <h1>🚀 ระบบสุริยะของเรา</h1>
         <p class="description">ยินดีต้อนรับน้องๆ เข้าสู่แบบทดสอบก่อนเรียนและแบบทดสอบหลังเรียน!<br>โปรดเลือกแบบทดสอบที่คุณต้องการดำเนินการด้านล่างนี้</p>
         
         <div class="btn-group">
@@ -199,14 +199,14 @@
             }
         }
 
-        // ฟังก์ชันเปลี่ยนสีปุ่มและแสดงคำว่า ✅ (เข้าทำแล้ว)
+        // ฟังก์ชันเปลี่ยนสีปุ่มและแสดงคำว่า ✅ (เสร็จสิ้น)
         function updateUI(testType) {
             const btn = document.getElementById('btn-' + testType);
             const statusSpan = document.getElementById('status-' + testType);
             
             if(btn && statusSpan) {
                 btn.classList.add('completed'); // เปลี่ยนปุ่มเป็นสีเขียว
-                statusSpan.innerHTML = "✅ (เข้าทำแล้ว)";
+                statusSpan.innerHTML = "✅ (เสร็จสิ้น)";
             }
         }
 
